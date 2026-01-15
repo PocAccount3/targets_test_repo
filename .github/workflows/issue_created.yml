@@ -1,0 +1,18 @@
+name: issue_created
+
+on:
+  issues:
+    types: [opened]
+
+env:
+  issue_title: ${{ github.event.issue.title }}
+
+jobs:
+  send-issue-created-slack-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+
+      - name: print issue creator
+        run: echo "${{ github.event.issue.user.login }}"
